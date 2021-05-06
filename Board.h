@@ -9,15 +9,17 @@ class Board {
         int height;
         int width;
         int gridSize = height * width;
-        int** grid;
+        char** grid;
     public:
         Board(int h=6,int w=7);
         ~Board();
         int getGridSize();
         int _H();
         int _W();
-        int display(int, int);
+        int displayPosition(int, int);
 		void changeValue(int,int);
-		void pileChips(int, int);      
+		void pileChips(int, char);      
+        void printBoard();
+        void displayOptions();
 };
 #endif
