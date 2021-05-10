@@ -18,7 +18,7 @@ class Board {
         int _W();
         int displayPosition(int, int);
 		void changeValue(int,int);
-		void pileChips(int, char);      
+		int* pileChips(int, char);      
         void printBoard();
         void displayOptions();
 };

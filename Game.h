@@ -10,18 +10,22 @@ class Game {
         bool win=false;
         char currPlayer;
         Board gameBoard;
-        void checkHorizontalWin();
-        void checkVerticalWin();
-        void checkDiagonalWin();
-        void checkWin();
+        void mainLoop();
+        void checkPlayerChoice();
+        void checkHorizontalWin(char player);
+        void checkVerticalWin(char player);
+        void checkDiagonalWin(char player, int,int);
+        void checkWin(int*);
     public:
         Game();
         const char player1 = 'X';
         const char player2 = 'T';
         // ~Game();
         void displayGame();
-		void dropChip(int,char);
+		int* dropChip(int,char);
         char choosePlayer();
         void assignPlayer(char player);
+        void play();
         };
+        
 #endif
