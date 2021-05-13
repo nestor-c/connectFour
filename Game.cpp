@@ -11,34 +11,32 @@ Game::Game(){
 void Game::displayGame(){
    gameBoard.printBoard();
 }
-int* Game::dropChip(int col, char player){ 
-    int* coords;
 
-    coords = gameBoard.pileChips(col,player);
-    
-    
-    //std::cout << std::endl << std::endl << "coords[0]: " << coords[0] << " coords[1]: " << coords[1] << std::endl << std::endl;
-    
-    
-    
+void Game::dropChip(int col, char player){ 
+    gameBoard.pileChips(col,player);
     gameBoard.printBoard();
     player == 'X' ? currPlayer = 'T': currPlayer = 'X';
-    return coords;
+
+    return; 
 }   
+
 char Game::choosePlayer(){
     srand(time(NULL));
     int chosen = rand() % 2 + 1;
     chosen == 1 ? currPlayer = 'X': currPlayer = 'T'; 
     return currPlayer;
 }
+
 void Game::assignPlayer(char player){
     currPlayer = player;
 }
-void Game::checkWin(int* coords){
+
+void Game::checkWin(char player, int row, int col){
     checkHorizontalWin(currPlayer);
     checkVerticalWin(currPlayer);
-    checkDiagonalWin(currPlayer, coords[0], coords[1]);
+    checkDiagonalWin(currPlayer, row, col);
 } 
+
 void Game::checkHorizontalWin(char player){
     for (int i = 0; i< gameBoard._H(); i++){
         int count = 0;
@@ -96,7 +94,7 @@ void Game::checkDiagonalWin(char player, int row, int col){
 
 
 void Game::play(){
-    currPlayer = choosePlayer();
+     currPlayer = choosePlayer();
     int playerNumber;
     
     currPlayer == 'X' ? playerNumber = 1:playerNumber=2;  
@@ -104,19 +102,19 @@ void Game::play(){
     std::cout << "Player " << playerNumber << " goes first!" << std::endl << std::endl;
     gameBoard.printBoard();
 }
+
 void Game::mainLoop(){
     int playerNumber;
     int playerChoice;
-    int* coords;
 
      while(!win){
         currPlayer == 'X'? playerNumber = 1:playerNumber=2;
         std::cout << "Player("<< currPlayer <<") "<< playerNumber << ": "<< std::endl;
         std::cout << "Choose a column from the available options. Anything with a \'0\' is an open spot" << std::endl;
         std::cin >> playerChoice;
-        coords = dropChip(playerChoice, currPlayer);
+        dropChip(playerChoice, currPlayer);
         
-        checkWin(coords);
+        checkWin(currPlayer,gameBoard.showLastMove().first, gameBoard.showLastMove().second);
         
     }
 }

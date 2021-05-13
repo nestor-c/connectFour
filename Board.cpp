@@ -1,5 +1,6 @@
 #include "Board.h"
 #include <iomanip>
+
 Board::Board(int h, int w):height(h),width(w){
 	grid = new char*[height];
 
@@ -15,7 +16,8 @@ Board::Board(int h, int w):height(h),width(w){
     }
 
 };
-int* Board::pileChips(int col, char player){
+
+void Board::pileChips(int col, char player){
 	int coords[2];
 	if (grid != NULL && (player == 'X' || player == 'T')){
 		if(grid[0][col] != '0') {
@@ -25,27 +27,33 @@ int* Board::pileChips(int col, char player){
 			if (grid[i][col] != '0') continue;
 			else {
 				grid[i][col] = player;
-				coords[0] = i; // Rows
-				coords[1] = col; // Col
-				return coords;
+				lastMove.first = i;
+				lastMove.second = col;
+				return;
 			}
 		}
 	}
 }
+
 Board::~Board(){
     for (int i=0;i<height;i++){
         delete[] grid[i];
     }
     delete grid;
 }
+
 int Board::getGridSize(){
     return gridSize;
 }
+
 int Board::displayPosition(int r, int c){
     return grid[r][c];
 }
+
 int Board::_H(){ return height;}
+
 int Board::_W(){ return width;}
+
 void Board::printBoard(){	
 	displayOptions();
 	for(int i=0;i<height;i++){
@@ -56,6 +64,7 @@ void Board::printBoard(){
 	}
 	std::cout << std::endl;
 }
+
 void Board::displayOptions(){
 	std::cout << "Your options: " <<std::endl;
 	for (int i = 0; i < width; i++){
@@ -63,3 +72,7 @@ void Board::displayOptions(){
 	}	
 	std::cout << std::endl << std::endl;
 }
+
+std::pair<int, int> Board::showLastMove(){
+	return lastMove;
+};

@@ -1,7 +1,7 @@
 #ifndef BOARD_H
 #define BOARD_H
 #include <iostream>
-#include <vector>
+#include <utility>
 
 class Board {   
   
@@ -10,6 +10,7 @@ class Board {
         int width;
         int gridSize = height * width;
         char** grid;
+        std::pair <int,int> lastMove;
     public:
         Board(int h=6,int w=7);
         ~Board();
@@ -18,8 +19,9 @@ class Board {
         int _W();
         int displayPosition(int, int);
 		void changeValue(int,int);
-		int* pileChips(int, char);      
+		void pileChips(int, char);      
         void printBoard();
         void displayOptions();
+        std::pair<int, int> showLastMove();
 };
 #endif
