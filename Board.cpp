@@ -2,6 +2,7 @@
 #include <iomanip>
 
 Board::Board(int h, int w):height(h),width(w){
+	gridSize = height * width;
 	grid = new char*[height];
 
     for (int i=0;i<height;i++){
@@ -15,14 +16,10 @@ Board::Board(int h, int w):height(h),width(w){
 		}
     }
 
-};
+}
 
 void Board::pileChips(int col, char player){
-	int coords[2];
 	if (grid != NULL && (player == 'X' || player == 'T')){
-		if(grid[0][col] != '0') {
-			std::cout << "Column full. Choose another column." << std::endl;
-		}
 		for(int i= height-1; i >= 0 ; i--){
 			if (grid[i][col] != '0') continue;
 			else {
@@ -33,6 +30,15 @@ void Board::pileChips(int col, char player){
 			}
 		}
 	}
+}
+
+bool Board::checkFull(int col){
+	if(grid[0][col] != '0') {
+			std::cout << "Column full. Choose another column." << std::endl;
+			printBoard();
+			return true;
+	}
+	else return false;
 }
 
 Board::~Board(){
@@ -75,4 +81,4 @@ void Board::displayOptions(){
 
 std::pair<int, int> Board::showLastMove(){
 	return lastMove;
-};
+}

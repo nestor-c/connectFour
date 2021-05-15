@@ -8,19 +8,21 @@
 
 class Game {
     private:
-        bool win=false;
+        bool win;
         char currPlayer;
+        int playerNumber;
         Board gameBoard;
         void mainLoop();
         void checkPlayerChoice();
-        void checkHorizontalWin(char player);
-        void checkVerticalWin(char player);
-        void checkDiagonalWin(char player, int,int);
-        void checkWin(char player,int row, int col);
+        bool checkHorizontalWin();
+        bool checkVerticalWin();
+        bool checkDiagonalWin();
+        void checkWin();
+        int  takeInput();
     public:
         Game();
-        const char player1 = 'X';
-        const char player2 = 'T';
+        char player1;
+        char player2;
         // ~Game();
         void displayGame();
 		void dropChip(int,char);

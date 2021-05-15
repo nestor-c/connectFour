@@ -1,0 +1,13 @@
+#include "Board.h"
+#include <iostream>
+
+int main(){
+    Board myBoard;
+    while(1){
+        int choice;
+        std::cin >> choice;
+        myBoard.pileChips(choice,'X');
+        myBoard.printBoard();
+    }
+    return 0;
+}

@@ -8,10 +8,12 @@ class Board {
     private:
         int height;
         int width;
-        int gridSize = height * width;
+        int gridSize;
         char** grid;
         std::pair <int,int> lastMove;
+        
     public:
+        bool checkFull(int);
         Board(int h=6,int w=7);
         ~Board();
         int getGridSize();
