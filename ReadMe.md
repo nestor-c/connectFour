@@ -1,1 +1,1 @@
-![alt text](https://github.com/nestor-c/connectFour/blob/mastdr/image.jpg?raw=true)
+![Connect Four logo](https://github.com/nestor-c/connectFour/blob/mastdr/logo_connect4.png?raw=true)
