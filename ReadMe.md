@@ -1,1 +1,3 @@
-![Connect Four logo](https://github.com/nestor-c/connectFour/blob/mastdr/logo_connect4.png?raw=true)
+<p align="center">
+  <img src="./logo_connect4.png" width="350" title="Authelia">
+</p>
